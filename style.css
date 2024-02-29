@@ -1,0 +1,101 @@
+:root {
+  --primary-color: #404040;
+  --secondary-color: #ebe4df;
+}
+
+@font-face {
+  font-family: apercuRegular;
+  src: url(./Fonts/FONT_APERCU/Apercu\ Regular.otf);
+}
+
+@font-face {
+  font-family: apercuMedium;
+  src: url(./Fonts/FONT_APERCU/Apercu\ Medium.otf);
+}
+
+@font-face {
+  font-family: apercuLight;
+  src: url(./Fonts/FONT_APERCU/Apercu\ Light.otf);
+}
+
+@font-face {
+  font-family: saol;
+  src: url(./Fonts/FONT_SAOL/SaolDisplay-Thin.otf);
+}
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Locomotive style */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Locomotive pulsating effect */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+}
