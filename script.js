@@ -642,55 +642,102 @@ function page5Animation() {
       // markers: true,
     },
   });
+
+  const page5AllSvg = document.querySelectorAll(".page5-all-svg");
+  const page5AllTitles = document.querySelectorAll(".page5-all-titles");
+
+  let flag = 0;
+  page5AllSvg.forEach((svg, index) => {
+    svg.addEventListener("click", () => {
+      if (flag === 0) {
+        gsap.to(svg, {
+          rotate: "45deg",
+        });
+        for (let i = 0; i < page5AllTitles.length; i++) {
+          if (i === index) {
+            if (index === 3 || index === 7) {
+              gsap.to(page5AllTitles[i], {
+                height: "34vw",
+              });
+            } else if (index === 5) {
+              gsap.to(page5AllTitles[i], {
+                height: "28vw",
+              });
+            } else {
+              gsap.to(page5AllTitles[i], {
+                height: "22vw",
+              });
+            }
+          } else {
+            gsap.to(page5AllTitles[i], {
+              height: "6vw",
+            });
+            gsap.to(page5AllSvg[i], {
+              rotate: "0deg",
+            });
+          }
+        }
+        flag = 1;
+      } else {
+        gsap.to(svg, {
+          rotate: "0deg",
+        });
+
+        gsap.to(page5AllTitles[index], {
+          height: "6vw",
+        });
+
+        flag = 0;
+      }
+    });
+  });
 }
 
 page5Animation();
 
-const page5AllSvg = document.querySelectorAll(".page5-all-svg");
-const page5AllTitles = document.querySelectorAll(".page5-all-titles");
+function page6Animation() {
+  clutterAnimation(".page6-title-box > h1");
 
-let flag = 0;
-page5AllSvg.forEach((svg, index) => {
-  svg.addEventListener("click", () => {
-    if (flag === 0) {
-      gsap.to(svg, {
-        rotate: "45deg",
-      });
-      for (let i = 0; i < page5AllTitles.length; i++) {
-        if (i === index) {
-          if (index === 3 || index === 7) {
-            gsap.to(page5AllTitles[i], {
-              height: "34vw",
-            });
-          } else if (index === 5) {
-            gsap.to(page5AllTitles[i], {
-              height: "28vw",
-            });
-          } else {
-            gsap.to(page5AllTitles[i], {
-              height: "22vw",
-            });
-          }
-        } else {
-          gsap.to(page5AllTitles[i], {
-            height: "6vw",
-          });
-          gsap.to(page5AllSvg[i], {
-            rotate: "0deg",
-          });
-        }
-      }
-      flag = 1;
-    } else {
-      gsap.to(svg, {
-        rotate: "0deg",
-      });
-
-      gsap.to(page5AllTitles[index], {
-        height: "6vw",
-      });
-
-      flag = 0;
-    }
+  gsap.from(".page6-title-box > h1>span", {
+    y: -200,
+    opacity: 0,
+    // rotate: 180,
+    scale: 0.5,
+    stagger: {
+      amount: 2,
+    },
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page6-title-box",
+      start: "top 50%",
+      end: "top 30%",
+      scrub: 1,
+      // markers: true,
+    },
   });
-});
+
+  gsap.from(".strip1", {
+    top: "-200%",
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page6",
+      start: "top 60%",
+      end: "top -100%",
+      // markers: true,
+      scrub: 1,
+    },
+  });
+
+  gsap.from(".strip2", {
+    top: "100%",
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page6",
+      start: "top 60%",
+      end: "top -100%",
+      // markers: true,
+      scrub: 1,
+    },
+  });
+}
+page6Animation();
