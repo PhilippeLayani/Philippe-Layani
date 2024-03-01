@@ -789,6 +789,212 @@ html {
 
 .page7 {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
+  background-color: var(--secondary-color);
+  color: #000;
+  padding: 0 4vw;
+  padding-bottom: 6vw;
+}
+
+.page7-title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: saol;
+}
+
+.page7-title-box {
+  text-align: center;
+  width: 100%;
+}
+
+.page7-title-box > h1 {
+  font-weight: 500;
+  font-size: 14vw;
+  line-height: 1;
+}
+
+.page7-title-box > h1 > span {
+  display: inline-block;
+}
+
+.page7 > p {
+  font-family: saol;
+  font-size: 4vw;
+}
+
+.page7 > p:nth-child(2) {
+  margin-top: 4vw;
+}
+
+.page8 {
+  position: relative;
+  height: 105vh;
+  width: 100%;
+  background-color: #000;
+  text-align: center;
+  color: white;
+  padding: 0 4vw;
+}
+
+.page8-title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: saol;
+}
+
+.page8-title-box {
+  text-align: center;
+  width: 100%;
+}
+
+.page8-title-box > h1 {
+  font-weight: 500;
+  font-size: 14vw;
+  line-height: 1;
+}
+
+.page8-title-box > h1 > span {
+  display: inline-block;
+}
+
+.page8-contacts {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 3vw;
+  overflow: hidden;
+}
+
+.page8-elem {
+  overflow: hidden;
+}
+
+.page8-elem > h1 {
+  font-size: 2.6vw;
+  font-family: apercuRegular;
+  font-weight: 100;
+  margin-top: 2vw;
+}
+
+.page8 a {
+  text-decoration: none;
+  color: #fff;
+  font-family: apercuRegular;
+  font-size: 3vw;
+  display: inline-block;
+}
+
+.page8-mail > a:nth-child(2) {
+  border-bottom: 2px solid #fff;
+}
+
+.page8-phone > a:nth-child(2) {
+  border-bottom: 2px solid #fff;
+}
+
+footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: apercuRegular;
+  margin-top: 8vw;
+}
+
+.footer-left {
+  display: flex;
+  gap: 2vw;
+}
+
+.footer-left a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3vw;
+  font-weight: 500;
+  opacity: 0;
+}
+
+.footer-left h3 {
+  color: #fff;
+  font-size: 1.3vw;
+  font-weight: 500;
+  position: absolute;
+  opacity: 1;
+  pointer-events: none;
+}
+
+footer span {
+  display: inline-block;
+}
+
+.footer-elem1,
+.footer-elem2,
+.footer-elem3 {
+  display: flex;
+  flex-direction: column;
+  height: 2.5vh;
+  position: relative;
+}
+
+.footer-logo {
+  margin-left: 3vw;
+}
+
+.footer-logo > svg {
+  height: 5vw;
+}
+
+.footer-right {
+  display: flex;
+  gap: 2vw;
+}
+
+.footer-right a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3vw;
+  font-weight: 500;
+  opacity: 0;
+}
+
+.footer-right h3 {
+  color: #fff;
+  font-size: 1.3vw;
+  font-weight: 500;
+  position: absolute;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.footer-elem4,
+.footer-elem5,
+.footer-elem6,
+.footer-elem7 {
+  display: flex;
+  flex-direction: column;
+  height: 2.5vh;
+  position: relative;
+}
+
+.footer-copyright {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: apercuLight;
+  margin-top: 6vw;
+}
+
+.footer-copyright-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footer-copyright h3 {
+  font-size: 0.8vw;
 }

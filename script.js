@@ -1,42 +1,55 @@
+// Initializes Lenis and sets up scroll event listeners
 const lenisJs = () => {
   const lenis = new Lenis();
+  // Event listener for scroll events, no action defined yet
   lenis.on("scroll", (e) => {});
 
+  // Updates ScrollTrigger on scroll events
   lenis.on("scroll", ScrollTrigger.update);
 
+  // Adds a function to the GSAP ticker that updates Lenis on each animation frame
   gsap.ticker.add((time) => {
     lenis.raf(time * 800);
   });
 
+  // Disables lag smoothing for GSAP animations
   gsap.ticker.lagSmoothing(0);
 };
 lenisJs();
 
+// Function to animate text content by splitting it into individual letters
 const clutterAnimation = (element) => {
   const htmlTag = document.querySelector(element);
   let clutter = "";
 
-  // Splitting the text content into individual letters and wrapping each in a span with a class
+  // Wraps each letter in a span with a class for animation
   htmlTag.textContent.split("").forEach((word) => {
     clutter += `<span>${word}</span>`;
   });
 
-  // Updating the HTML content of the element with the animated spans
+  // Replaces the element's content with the animated spans
   htmlTag.innerHTML = clutter;
 };
 
+// Function to animate navigation elements on mouse enter
 const navAnimation = () => {
+  // Selects the first navigation element
   const navElem1 = document.querySelector(".nav-elem1");
 
+  // Applies clutter animation to the text content of the first navigation element
   clutterAnimation(".nav-elem1>h3");
   clutterAnimation(".nav-elem1>a");
+
+  // Adds mouse enter event listener to animate the first navigation element
   navElem1.addEventListener("mouseenter", () => {
+    // Animates the opacity of the link
     gsap.to(".nav-elem1>a", {
       opacity: 1,
       duration: 1.5,
       delay: 0.6,
     });
 
+    // Animates the position and opacity of the text spans
     gsap.to(".nav-elem1>h3>span", {
       y: 100,
       opacity: 0,
@@ -47,15 +60,18 @@ const navAnimation = () => {
       },
       onComplete: () => {
         const tl = gsap.timeline();
+        // Resets the position and opacity of the text spans
         tl.to(".nav-elem1>h3>span", {
           y: 0,
           opacity: 0,
           duration: 0.1,
         });
+        // Animates the opacity back to 1
         tl.to(".nav-elem1>h3>span", {
           opacity: 1,
           duration: 0.3,
         });
+        // Animates the opacity of the link back to 0
         tl.to(".nav-elem1>a", {
           duration: 0.3,
           opacity: 0,
@@ -64,17 +80,23 @@ const navAnimation = () => {
     });
   });
 
+  // Selects the second navigation element
   const navElem2 = document.querySelector(".nav-elem2");
 
+  // Applies clutter animation to the text content of the second navigation element
   clutterAnimation(".nav-elem2>h3");
   clutterAnimation(".nav-elem2>a");
+
+  // Adds mouse enter event listener to animate the second navigation element
   navElem2.addEventListener("mouseenter", () => {
+    // Animates the opacity of the link
     gsap.to(".nav-elem2>a", {
       opacity: 1,
       duration: 1.5,
       delay: 0.6,
     });
 
+    // Animates the position and opacity of the text spans
     gsap.to(".nav-elem2>h3>span", {
       y: 100,
       opacity: 0,
@@ -84,16 +106,19 @@ const navAnimation = () => {
         from: "random",
       },
       onComplete: () => {
+                // Resets the position and opacity of the text spans
         const tl = gsap.timeline();
         tl.to(".nav-elem2>h3>span", {
           y: 0,
           opacity: 0,
           duration: 0.1,
         });
+              // Animates the opacity back to 1
         tl.to(".nav-elem2>h3>span", {
           opacity: 1,
           duration: 0.3,
         });
+        // Animates the opacity of the link back to 0
         tl.to(".nav-elem2>a", {
           duration: 0.3,
           opacity: 0,
@@ -103,23 +128,32 @@ const navAnimation = () => {
   });
 };
 
+// Calling the navAnimation function
 navAnimation();
 
+// Function to animate a menu on click
 const menuAnimation = () => {
+  // Selects the menu element
   const menu = document.querySelector(".nav-elem1");
 
+   // Adds a click event listener to the menu
   menu.addEventListener("click", () => {
     const tl = gsap.timeline();
+      // Animates the menu's opacity and pointer events
     tl.to(".nav-menu", {
       opacity: 1,
       pointerEvents: "all",
     });
+
+     // Animates the text rotation and scaling
     tl.to(".anime-text", {
       delay: -0.3,
       rotate: "-90deg",
       duration: 1,
       scale: 3,
     });
+
+     // Animates the movement of h1 elements within .anime-text
     tl.to(
       ".anime-text>h1",
       {
@@ -131,6 +165,8 @@ const menuAnimation = () => {
       },
       "a"
     );
+
+     // Moves .anime-text to the top
     tl.to(
       ".anime-text",
       {
@@ -138,6 +174,8 @@ const menuAnimation = () => {
       },
       "a"
     );
+
+       // Animates the scale, opacity, and y position of elements within .nav-menu-top
     tl.to(
       ".nav-menu-top>div",
       {
@@ -148,6 +186,7 @@ const menuAnimation = () => {
       "b"
     );
 
+      // Animates the scale, opacity, and y position of .nav-menu-bottom links
     tl.to(
       ".nav-menu-bottom a",
       {
@@ -159,10 +198,13 @@ const menuAnimation = () => {
     );
   });
 
+ // Selects the menu close button
   const menuClose = document.querySelector(".menu-close");
 
+  // Adds a click event listener to the menu close button
   menuClose.addEventListener("click", () => {
     const tl = gsap.timeline();
+      // Reverses the animations for .nav-menu-top and .nav-menu-bottom elements
     tl.to(
       ".nav-menu-top>div",
       {
@@ -183,6 +225,7 @@ const menuAnimation = () => {
       "a"
     );
 
+    // Moves .anime-text back to its original position
     tl.to(
       ".anime-text",
       {
@@ -190,6 +233,8 @@ const menuAnimation = () => {
       },
       "a"
     );
+
+      // Reverses the movement of h1 elements within .anime-text
     tl.to(
       ".anime-text>h1",
       {
@@ -202,6 +247,7 @@ const menuAnimation = () => {
       "a"
     );
 
+    // Resets the rotation and scaling of .anime-text
     tl.to(".anime-text", {
       delay: -0.3,
       rotate: "0deg",
@@ -209,6 +255,7 @@ const menuAnimation = () => {
       scale: 1.2,
     });
 
+     // Hides the menu by setting its opacity to 0 and disabling pointer events
     tl.to(".nav-menu", {
       opacity: 0,
       pointerEvents: "none",
@@ -216,6 +263,7 @@ const menuAnimation = () => {
   });
 };
 
+// Calls the menuAnimation function to initialize the menu animations
 menuAnimation();
 
 const page2Animation = () => {
@@ -741,3 +789,353 @@ function page6Animation() {
   });
 }
 page6Animation();
+
+function page7Animation() {
+  clutterAnimation(".page7-title-box > h1");
+
+  gsap.from(".page7-title-box > h1>span", {
+    y: -200,
+    opacity: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page7-title-box",
+      start: "top 50%",
+      end: "top 30%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+
+  clutterAnimation(".page7>p:nth-child(2)");
+  clutterAnimation(".page7>p:nth-child(3)");
+
+  gsap.from(".page7>p:nth-child(2)>span", {
+    opacity: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page7>p:nth-child(2)",
+      start: "top 70%",
+      end: "top 40%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+
+  gsap.from(".page7>p:nth-child(3)>span", {
+    opacity: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page7>p:nth-child(3)",
+      start: "top 80%",
+      end: "top 40%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+}
+page7Animation();
+
+function page8Animation() {
+  clutterAnimation(".page8-title-box > h1");
+
+  gsap.from(".page8-title-box > h1>span", {
+    y: -200,
+    opacity: 0,
+    stagger: 0.1,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page8-title-box",
+      start: "top 50%",
+      end: "top 30%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+
+  gsap.from(".page8-elem > h1,.page8 a", {
+    y: 100,
+    scrollTrigger: {
+      scroller: "body",
+      trigger: ".page8-elem",
+      start: "top 70%",
+      end: "top 40%",
+      scrub: 1,
+      // markers: true,
+    },
+  });
+}
+
+page8Animation();
+
+function page9Animation() {
+  const footerElem1 = document.querySelector(".footer-elem1");
+
+  clutterAnimation(".footer-elem1>h3");
+  clutterAnimation(".footer-elem1>a");
+  footerElem1.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem1>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem1>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem1>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem1>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem1>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem2 = document.querySelector(".footer-elem2");
+
+  clutterAnimation(".footer-elem2>h3");
+  clutterAnimation(".footer-elem2>a");
+  footerElem2.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem2>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem2>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem2>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem2>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem2>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem3 = document.querySelector(".footer-elem3");
+
+  clutterAnimation(".footer-elem3>h3");
+  clutterAnimation(".footer-elem3>a");
+  footerElem3.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem3>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem3>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem3>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem3>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem3>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem4 = document.querySelector(".footer-elem4");
+
+  clutterAnimation(".footer-elem4>h3");
+  clutterAnimation(".footer-elem4>a");
+  footerElem4.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem4>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem4>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem4>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem4>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem4>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem5 = document.querySelector(".footer-elem5");
+
+  clutterAnimation(".footer-elem5>h3");
+  clutterAnimation(".footer-elem5>a");
+  footerElem5.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem5>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem5>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem5>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem5>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem5>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem6 = document.querySelector(".footer-elem6");
+
+  clutterAnimation(".footer-elem6>h3");
+  clutterAnimation(".footer-elem6>a");
+  footerElem6.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem6>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem6>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem6>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem6>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem6>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+
+  const footerElem7 = document.querySelector(".footer-elem7");
+
+  clutterAnimation(".footer-elem7>h3");
+  clutterAnimation(".footer-elem7>a");
+  footerElem7.addEventListener("mouseenter", () => {
+    gsap.to(".footer-elem7>a", {
+      opacity: 1,
+      duration: 1.5,
+      delay: 0.6,
+    });
+
+    gsap.to(".footer-elem7>h3>span", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: {
+        amount: 0.5,
+        from: "random",
+      },
+      onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to(".footer-elem7>h3>span", {
+          y: 0,
+          opacity: 0,
+          duration: 0.1,
+        });
+        tl.to(".footer-elem7>h3>span", {
+          opacity: 1,
+          duration: 0.3,
+        });
+        tl.to(".footer-elem7>a", {
+          duration: 0.3,
+          opacity: 0,
+        });
+      },
+    });
+  });
+}
+
+page9Animation();
